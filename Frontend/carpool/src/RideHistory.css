@@ -1,0 +1,97 @@
+/* RideHistory.css */
+.ride-history-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    font-family: Arial, sans-serif;
+}
+
+.ride-history-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.app-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #570c27;
+}
+
+.date-filter {
+    font-size: 14px;
+    padding: 5px;
+}
+
+.ride-card-container {
+    width: 80%;
+    max-width: 600px;
+    overflow-y: auto;
+    max-height: 500px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.ride-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.ride-card p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.card-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.feedback-button {
+    background-color: #570c27;
+    color: white;
+}
+
+.feedback-button:hover {
+    background-color: #6e1735;
+}
+
+.view-profile-button {
+    background-color: #ddd;
+    color: #570c27;
+}
+
+.view-profile-button:hover {
+    background-color: #ccc;
+}
