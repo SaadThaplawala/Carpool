@@ -1,0 +1,113 @@
+/* CarpoolList.css */
+/* .carpool-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    font-family: Arial, sans-serif;
+  }
+  .carpool-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+  } */
+
+  /* .carpool-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+    
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #570c27;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .carpool-table {
+    border-collapse: collapse;
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .carpool-table th,
+  .carpool-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .carpool-table th {
+    background-color: #570c27;
+    color: white;
+  }
+  
+  .carpool-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .carpool-table tr:hover {
+    background-color: #ddd;
+  } */
+  
+  
+
+  /* Common container for consistent styling across screens */
+.common-container {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Specific styles for Carpool Page */
+.carpool-container {
+  margin-top: 50px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #570c27;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.carpool-table {
+  border-collapse: collapse;
+  width: 80%;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.carpool-table th,
+.carpool-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.carpool-table th {
+  background-color: #570c27;
+  color: white;
+}
+
+.carpool-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.carpool-table tr:hover {
+  background-color: #ddd;
+}

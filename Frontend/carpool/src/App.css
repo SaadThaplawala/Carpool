@@ -37,3 +37,20 @@
 .create-ride-button:hover {
   background-color: #650f34; /* Slightly darker shade for hover effect */
 }
+
+.nav-button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+  background-color: #570c27; /* Match header background */
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: #6e1735; /* Slightly darker shade for hover */
+}
