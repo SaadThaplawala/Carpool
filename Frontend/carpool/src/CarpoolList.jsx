@@ -38,8 +38,7 @@
 // export default CarpoolList;
 
 import React from "react";
-import "./Carpool.css";
-import CarpoolList from "./CarpoolList";
+import "./CarpoolList.css";
 
 const Carpool = () => {
   return (

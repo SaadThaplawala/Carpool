@@ -446,11 +446,11 @@
 
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
-import CreateRide from "./CreateRide";
-import RideHistory from "./RideHistory";
-import LoginScreen from "./LoginScreen"; // Assuming you have a login screen component
-import CarpoolList from "./CarpoolList"; // Assuming you have a carpool list component
-import { fetchRides } from "./api"; // Assuming you fetch rides from an API
+import CreateRide from "./CreateRide.jsx";
+import RideHistory from "./RideHistory.jsx";
+import LoginScreen from "./LoginScreen.jsx"; // Assuming you have a login screen component
+import CarpoolList from "./CarpoolList.jsx"; // Assuming you have a carpool list component
+import { fetchRides } from "./api.js"; // Assuming you fetch rides from an API
 
 function App() {
   const [rides, setRides] = useState([]);
