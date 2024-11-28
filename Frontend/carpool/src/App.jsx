@@ -71,20 +71,25 @@
 
 // App.jsx
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import CarpoolList from "./CarpoolList";
 import RideHistory from "./RideHistory";
 import Sidebar from "./Sidebar";
 import CreateRide from "./CreateRide";
+import LoginScreen from "./LoginScreen";
+import SettingsScreen from "./SettingsScreen";
 import "./App.css";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // Hardcode as true to skip LoginScreen
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Initially set to false to show the login screen
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const handleNavigate = (page) => {
-    setSidebarOpen(false);
-    console.log(`Navigate to: ${page}`);
+  const handleLogout = () => {
+    setIsLoggedIn(false); // Set login state to false
+  };
+
+  const handleLogin = () => {
+    setIsLoggedIn(true); // Set login state to true
   };
 
   return (
@@ -100,15 +105,26 @@ const App = () => {
           <Sidebar
             isOpen={sidebarOpen}
             onClose={() => setSidebarOpen(false)}
-            onNavigate={handleNavigate}
+            onLogout={handleLogout}
           />
         </>
       )}
       <div className={`main-content ${sidebarOpen ? "shifted" : ""}`}>
         <Routes>
-          <Route path="/" element={<CarpoolList />} /> {/* Default to CarpoolList */}
-          <Route path="/history" element={<RideHistory />} />
-          <Route path="/create" element={<CreateRide />} />
+          {!isLoggedIn && (
+            <Route
+              path="*"
+              element={<LoginScreen onLogin={handleLogin} />}
+            />
+          )}
+          {isLoggedIn && (
+            <>
+              <Route path="/" element={<CarpoolList />} />
+              <Route path="/history" element={<RideHistory />} />
+              <Route path="/create" element={<CreateRide />} />
+              <Route path="/settings" element={<SettingsScreen />} />
+            </>
+          )}
         </Routes>
       </div>
     </Router>

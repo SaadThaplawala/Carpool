@@ -1,55 +1,38 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './LoginScreen.css';
+import React from "react";
+import "./LoginScreen.css";
 
-const LoginScreen = ({ onLogin }) => {  // Receive `onLogin` as a prop
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+const LoginScreen = ({ onLogin }) => {
+    const handleLogin = () => {
+        onLogin();
+    };
 
-  const handleLogin = () => {
-    // Simulating a successful login for development
-    console.log('Login bypassed for development purposes');
-    onLogin(); // Trigger the login state change in App.js
-    navigate('/'); // Redirect to the CarpoolList page (or Home page)
-  };
-
-  return (
-    <div className="login-container">
-      <h1 className="login-title">IBA Carpool App</h1>
-      <form className="login-form">
-        <div className="form-group">
-          <label htmlFor="email">ERP/Email</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your ERP/Email"
-          />
+    return (
+        <div className="login-container">
+            <div className="header-bar">IBA Carpool App</div>
+            <div className="main-content">
+                <div className="login-form">
+                    <div className="form-group">
+                        <label>ERP/Email</label>
+                        <input type="email" placeholder="Enter your ERP/Email" />
+                    </div>
+                    <div className="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Enter your password" />
+                    </div>
+                    <div className="form-buttons">
+                        <button className="login-button" onClick={handleLogin}>
+                            Login
+                        </button>
+                    </div>
+                    <div className="form-links">
+                        <a href="/signup" className="signup-link">Sign Up</a>
+                        <br />
+                        <a href="/forgot-password" className="forgot-password-link">Forgot Password?</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter your password"
-          />
-        </div>
-        <div className="form-buttons">
-          <button type="button" onClick={handleLogin} className="login-button">
-            Login
-          </button>
-          <div>
-            <a href="#" className="signup-link">Sign Up</a> | 
-            <a href="#" className="forgot-password-link"> Forgot Password?</a>
-          </div>
-        </div>
-      </form>
-    </div>
-  );
+    );
 };
 
 export default LoginScreen;

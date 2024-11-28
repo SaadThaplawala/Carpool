@@ -65,6 +65,7 @@ const CarpoolList = () => {
       driver: "John Doe",
       destination: "University",
       time: "8:00 AM",
+      date: "2024-11-28",
       seatsAvailable: 3,
     },
     {
@@ -72,6 +73,7 @@ const CarpoolList = () => {
       driver: "Jane Smith",
       destination: "Downtown",
       time: "9:30 AM",
+      date: "2024-11-29",
       seatsAvailable: 2,
     },
   ]);
@@ -91,6 +93,7 @@ const CarpoolList = () => {
               <p><strong>Driver:</strong> {ride.driver}</p>
               <p><strong>Destination:</strong> {ride.destination}</p>
               <p><strong>Time:</strong> {ride.time}</p>
+              <p><strong>Date:</strong> {ride.date}</p>
               <p><strong>Seats Available:</strong> {ride.seatsAvailable}</p>
             </div>
             <button
@@ -107,5 +110,6 @@ const CarpoolList = () => {
 };
 
 export default CarpoolList;
+
 
 

@@ -80,6 +80,7 @@ const CreateRide = () => {
     driver: "",
     destination: "",
     time: "",
+    date: "",
     seatsAvailable: "",
   });
 
@@ -115,6 +116,12 @@ const CreateRide = () => {
           type="time"
           name="time"
           value={rideDetails.time}
+          onChange={handleInputChange}
+        />
+        <input
+          type="date"
+          name="date"
+          value={rideDetails.date}
           onChange={handleInputChange}
         />
         <input

@@ -1,0 +1,41 @@
+.settings-container {
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+}
+
+.settings-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.settings-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    padding: 10px 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.settings-option label {
+    font-size: 18px;
+    color: #333;
+}
+
+.toggle-button {
+    background-color: #570c27;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.toggle-button:hover {
+    background-color: #822040;
+}

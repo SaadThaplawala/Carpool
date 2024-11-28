@@ -1,35 +1,67 @@
-/* Sidebar.css */
+/* Sidebar container */
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    background-color: #570c27;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .sidebar.open {
-    transform: translateX(0);
-  }
-  
-  .sidebar button {
-    background: none;
-    border: none;
-    color: white;
-    text-align: left;
-    font-size: 16px;
-    padding: 10px;
-    margin: 5px 0;
-    cursor: pointer;
-  }
-  
-  .sidebar button:hover {
-    background-color: #575757;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #570c27;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Open sidebar state */
+.sidebar.open {
+  transform: translateX(0);
+}
+
+/* Sidebar list */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Sidebar list items */
+.sidebar ul li {
+  margin: 10px 0;
+}
+
+/* General button styles */
+.sidebar button {
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  font-size: 16px;
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  text-align: left;
+}
+
+/* Hover effect for all buttons */
+.sidebar button:hover {
+  background-color: #822040; /* Slightly lighter red for hover effect */
+}
+
+/* Specific styling for settings button */
+.settings-button {
+  font-weight: bold; /* Makes the settings button more prominent */
+}
+
+/* Specific styling for logout button */
+.logout-button {
+  margin-top: auto; /* Push logout to the bottom */
+  font-weight: bold; /* Make logout button stand out */
+}
+
+/* Logout button hover effect */
+.logout-button:hover {
+  background-color: #a83245; /* Slightly different shade for logout button */
+}
