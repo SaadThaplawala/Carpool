@@ -1,56 +1,87 @@
-.app-header {
+.app-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  width: 100%;
-  background-color: #570c27;
+  flex-direction: row;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #4a1e3c;
   color: white;
+  height: 100vh;
+  overflow: hidden;
+  transition: width 0.3s;
 }
 
-.header-left {
-  display: flex;
-  align-items: center;
+.sidebar.collapsed {
+  width: 60px;
 }
 
-.header-right {
-  margin-right: 20px;
+.sidebar.expanded {
+  width: 250px;
 }
 
-.logo {
-  width: 40px;
-  height: auto;
-  margin-right: 10px;
-}
-
-.create-ride-button {
-  background-color: #4b0f24; /* Match header background color */
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+.burger-menu {
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+  padding: 15px;
 }
 
-.create-ride-button:hover {
-  background-color: #650f34; /* Slightly darker shade for hover effect */
+.burger-menu .line {
+  background-color: white;
+  height: 3px;
+  margin: 5px 0;
+  width: 30px;
 }
 
-.nav-button {
-  margin: 0 10px;
-  padding: 10px 20px;
+.menu {
+  margin-top: 20px;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  margin: 15px 0;
+}
+
+.menu a {
+  color: white;
   text-decoration: none;
-  color: white;
-  background-color: #570c27; /* Match header background */
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  padding: 10px;
+  display: block;
 }
 
-.nav-button:hover {
-  background-color: #6e1735; /* Slightly darker shade for hover */
+.menu a.active-link {
+  background-color: #e7c1ff;
+}
+
+.main-content {
+  margin-left: 60px;
+  padding: 20px;
+  transition: margin-left 0.3s;
+}
+
+.sidebar.expanded + .main-content {
+  margin-left: 250px;
+}
+
+.carpool-list {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.ride-card {
+  background: white;
+  margin-bottom: 10px;
+  padding: 15px;
+  border: 1px solid #ddd;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }

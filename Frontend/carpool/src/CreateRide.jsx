@@ -42,6 +42,7 @@ const CreateRide = () => {
             <option value="09:00 AM">09:00 AM</option>
           </select>
         </div>
+      
 
         <div className="form-buttons">
           <button
