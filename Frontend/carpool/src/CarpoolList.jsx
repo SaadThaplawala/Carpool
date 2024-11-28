@@ -1,61 +1,5 @@
-// import React from "react";
-// import "./CarpoolList.css";
-
-// const CarpoolList = () => {
-//   const carpoolData = [
-//     { name: "Driver 1", to: "Location", time: "08:00", from: "A" },
-//     { name: "Driver 2", to: "Location B", time: "09:30", from: "C" },
-//     { name: "Driver 3", to: "Location D", time: "11:00", from: "E" },
-//   ];
-
-//   return (
-//     <div className="carpool-container">
-//       <h2 className="title">Active Bookings</h2>
-//       <table className="carpool-table">
-//         <thead>
-//           <tr>
-//             <th>Driver's Name</th>
-//             <th>Going To</th>
-//             <th>At Time (Hr:Min)</th>
-//             <th>From</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {carpoolData.map((ride, index) => (
-//             <tr key={index}>
-//               <td>{ride.name}</td>
-//               <td>{ride.to}</td>
-//               <td>{ride.time}</td>
-//               <td>{ride.from}</td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// };
-
-// export default CarpoolList;
-
-// import React from "react";
-// import "./CarpoolList.css";
-
-// const Carpool = () => {
-//   return (
-//     <div className="common-container">
-//       <div className="carpool-container">
-//         <h1 className="title">Carpool List</h1>
-//         {/* CarpoolList component renders the table */}
-//         <CarpoolList />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Carpool;
-
-// CarpoolList.jsx
 import React, { useState } from "react";
+import ActiveBooking from "./ActiveBooking";
 import "./CarpoolList.css";
 
 const CarpoolList = () => {
@@ -75,14 +19,52 @@ const CarpoolList = () => {
       seatsAvailable: 2,
     },
   ]);
+  const [activeBooking, setActiveBooking] = useState(null);
 
-  const handleBookRide = (rideId) => {
-    console.log(`Ride ${rideId} booked!`);
-    // Placeholder for API integration
+  const handleBookRide = (ride) => {
+    setActiveBooking({
+      driver: ride.driver,
+      destination: ride.destination,
+      time: ride.time,
+      from: "Home", // Example static data, you can replace it with actual dynamic data
+      totalPassengers: 4 - ride.seatsAvailable,
+    });
+
+    // Dynamically update the ride's seats
+    setRides((prevRides) =>
+      prevRides.map((r) =>
+        r.id === ride.id
+          ? { ...r, seatsAvailable: r.seatsAvailable - 1 }
+          : r
+      )
+    );
+  };
+
+  const handleCancelBooking = () => {
+    if (activeBooking) {
+      setRides((prevRides) =>
+        prevRides.map((r) =>
+          r.driver === activeBooking.driver
+            ? { ...r, seatsAvailable: r.seatsAvailable + 1 }
+            : r
+        )
+      );
+      setActiveBooking(null);
+    }
+  };
+
+  const handleViewProfile = () => {
+    console.log("Viewing profile of driver:", activeBooking.driver);
+    // Add logic to navigate to driver's profile
   };
 
   return (
     <div className="carpool-list-container">
+      <ActiveBooking
+        booking={activeBooking}
+        onCancel={handleCancelBooking}
+        onViewProfile={handleViewProfile}
+      />
       <h2>Available Rides</h2>
       <ul className="ride-list">
         {rides.map((ride) => (
@@ -95,9 +77,12 @@ const CarpoolList = () => {
             </div>
             <button
               className="book-button"
-              onClick={() => handleBookRide(ride.id)}
+              onClick={() => handleBookRide(ride)}
+              disabled={ride.seatsAvailable === 0 || activeBooking}
             >
-              Book Ride
+              {activeBooking && activeBooking.driver === ride.driver
+                ? "Already Booked"
+                : "Book Ride"}
             </button>
           </li>
         ))}
@@ -107,5 +92,3 @@ const CarpoolList = () => {
 };
 
 export default CarpoolList;
-
-

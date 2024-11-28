@@ -1,0 +1,32 @@
+.active-booking-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .booking-info {
+    margin-bottom: 10px;
+  }
+  
+  .booking-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .cancel-button {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .profile-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
