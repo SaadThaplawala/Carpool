@@ -1,0 +1,35 @@
+/* Sidebar.css */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #570c27;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .sidebar button {
+    background: none;
+    border: none;
+    color: white;
+    text-align: left;
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+  }
+  
+  .sidebar button:hover {
+    background-color: #575757;
+  }
+  
