@@ -5,13 +5,16 @@ body {
 }
 
 /* App Header Styling */
-.app-header {
+.app-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  width: 100%;
-  background-color: #570c27;
+  flex-direction: row;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #4a1e3c;
   color: white;
   position: fixed;
   top: 0;
@@ -23,8 +26,8 @@ body {
   align-items: center;
 }
 
-.header-right {
-  margin-right: 20px;
+.sidebar.collapsed {
+  width: 60px;
 }
 
 .logo {
@@ -40,17 +43,28 @@ body {
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+  padding: 15px;
 }
 
 .create-ride-button:hover {
   background-color: #650f34;
 }
 
-.nav-button {
-  margin: 0 10px;
-  padding: 10px 20px;
+.menu {
+  margin-top: 20px;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  margin: 15px 0;
+}
+
+.menu a {
+  color: white;
   text-decoration: none;
   color: white;
   background-color: #570c27;
