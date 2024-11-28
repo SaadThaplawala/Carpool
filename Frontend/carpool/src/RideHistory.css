@@ -1,51 +1,23 @@
-/* RideHistory.css */
 .ride-history-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 30px;
     font-family: Arial, sans-serif;
-}
-
-.ride-history-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 80%;
-    max-width: 600px;
-    margin-bottom: 20px;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo img {
-    width: 50px;
-    height: auto;
-    margin-right: 10px;
-}
-
-.app-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #570c27;
-}
-
-.date-filter {
-    font-size: 14px;
-    padding: 5px;
+    width: 100%; /* Allow full width */
+    padding: 0 20px; /* Add padding for better spacing on edges */
 }
 
 .ride-card-container {
-    width: 80%;
-    max-width: 600px;
+    width: 100%; /* Full width of the parent container */
+    max-width: 1200px; /* Set a reasonable maximum width for large screens */
     overflow-y: auto;
     max-height: 500px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #f9f9f9;
+    padding: 10px; /* Add padding inside the container */
+    box-sizing: border-box; /* Include padding and border in width calculation */
 }
 
 .ride-card {
@@ -53,14 +25,16 @@
     flex-direction: column;
     border: 1px solid #ddd;
     padding: 15px;
-    margin: 10px;
+    margin: 10px 0; /* Adjust spacing between cards */
     background-color: white;
     border-radius: 5px;
+    width: 100%; /* Take up full width of container */
+    box-sizing: border-box; /* Include padding and border in width */
 }
 
 .ride-card p {
     margin: 5px 0;
-    font-size: 14px;
+    font-size: 16px; /* Increase font size for better readability */
 }
 
 .card-buttons {
@@ -70,8 +44,8 @@
 }
 
 .card-button {
-    padding: 8px 16px;
-    font-size: 14px;
+    padding: 10px 20px; /* Increase padding for larger buttons */
+    font-size: 16px; /* Match font size with text */
     font-weight: bold;
     border: none;
     border-radius: 5px;

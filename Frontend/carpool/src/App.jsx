@@ -1,31 +1,39 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import CarpoolList from "./CarpoolList";
 import RideHistory from "./RideHistory";
 import Sidebar from "./Sidebar";
 import CreateRide from "./CreateRide";
 import Profile from "./Profile";
-// import ActiveBooking from "./ActiveBooking"; saad edited so access is only in 
 import LoginScreen from "./LoginScreen";
 import SettingsScreen from "./SettingsScreen";
 import "./App.css";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Initially set to false to show the login screen
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const handleLogout = () => {
-    setIsLoggedIn(false); // Set login state to false
-  };
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Login state
+  const [sidebarOpen, setSidebarOpen] = useState(false); // Sidebar toggle state
+  const [activeRide, setActiveRide] = useState(null); // State to store active booking
+  const [rides, setRides] = useState([]); // State to store all rides
 
   const handleLogin = () => {
-    setIsLoggedIn(true); // Set login state to true
+    setIsLoggedIn(true); // Set the user as logged in
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false); // Logout the user
+    setSidebarOpen(false);
+  };
+
+  const handleCreateRide = (newRide) => {
+    setActiveRide(newRide); // Set the new ride as the active booking
+    setRides([newRide, ...rides]); // Add the new ride to the top of the rides list
   };
 
   return (
     <Router>
-      {isLoggedIn && (
+      {isLoggedIn ? (
         <>
+          {/* Sidebar and Menu Button */}
           <button
             className="menu-button"
             onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -37,18 +45,39 @@ const App = () => {
             onClose={() => setSidebarOpen(false)}
             onLogout={handleLogout}
           />
+          <div className={`main-content ${sidebarOpen ? "shifted" : ""}`}>
+            {/* Protected Routes */}
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <CarpoolList
+                    rides={rides}
+                    setRides={setRides}
+                    activeRide={activeRide}
+                    setActiveRide={setActiveRide}
+                  />
+                }
+              />
+              <Route path="/history" element={<RideHistory />} />
+              <Route
+                path="/create"
+                element={
+                  <CreateRide
+                    onCreateRide={handleCreateRide}
+                  />
+                }
+              />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/settings" element={<SettingsScreen />} />
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+          </div>
         </>
+      ) : (
+        // Show the login screen if not logged in
+        <LoginScreen onLogin={handleLogin} />
       )}
-      <div className={`main-content ${sidebarOpen ? "shifted" : ""}`}>
-        <Routes>
-          <Route path="/" element={<CarpoolList />} />
-          <Route path="/history" element={<RideHistory />} />
-          <Route path="/create" element={<CreateRide />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/active-booking" element={<CarpoolList />} />
-          <Route path="/settings" element={<SettingsScreen />} />
-        </Routes>
-      </div>
     </Router>
   );
 };

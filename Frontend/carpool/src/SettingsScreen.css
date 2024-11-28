@@ -1,13 +1,19 @@
 .settings-container {
+    display: flex; /* Enable flexbox */
+    flex-direction: column; /* Align items in a column */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
     padding: 20px;
     text-align: center;
     background-color: #f9f9f9;
-    min-height: 100vh;
+    min-height: 100vh; /* Full screen height */
+    width: 100%; /* Allow full width of the screen */
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .settings-container h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 28px; /* Larger heading for better appearance */
+    margin-bottom: 30px;
     color: #333;
 }
 
@@ -15,25 +21,30 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 0;
-    padding: 10px 20px;
+    padding: 15px 20px; /* Increased padding for more space */
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
+    width: 100%; /* Take up full width of the parent container */
+    max-width: 800px; /* Set a maximum width for readability */
+    box-sizing: border-box; /* Include padding and border in width */
 }
 
 .settings-option label {
     font-size: 18px;
     color: #333;
+    flex: 1; /* Allow label to take up extra space */
+    text-align: left;
 }
 
 .toggle-button {
     background-color: #570c27;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 10px 15px; /* Increase padding for better spacing */
     cursor: pointer;
     border-radius: 5px;
+    font-size: 16px; /* Match font size with labels */
 }
 
 .toggle-button:hover {
