@@ -1,4 +1,3 @@
-// LoginScreen.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginScreen.css';
@@ -9,14 +8,10 @@ const LoginScreen = ({ onLogin }) => {  // Receive `onLogin` as a prop
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    if (email && password) {
-      // Perform the login logic here (you can add validation or API calls)
-      console.log('Logging in with', email, password);
-      onLogin(); // Update the login state in App.js
-      navigate('/'); // Redirect to home page after successful login
-    } else {
-      alert('Please enter email and password.');
-    }
+    // Simulating a successful login for development
+    console.log('Login bypassed for development purposes');
+    onLogin(); // Trigger the login state change in App.js
+    navigate('/'); // Redirect to the CarpoolList page (or Home page)
   };
 
   return (
@@ -31,7 +26,6 @@ const LoginScreen = ({ onLogin }) => {  // Receive `onLogin` as a prop
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your ERP/Email"
-            required
           />
         </div>
         <div className="form-group">
@@ -42,7 +36,6 @@ const LoginScreen = ({ onLogin }) => {  // Receive `onLogin` as a prop
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
-            required
           />
         </div>
         <div className="form-buttons">
