@@ -14,7 +14,35 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Login state
   const [sidebarOpen, setSidebarOpen] = useState(false); // Sidebar toggle state
   const [activeRide, setActiveRide] = useState(null); // State to store active booking
-  const [rides, setRides] = useState([]); // State to store all rides
+  const [rides, setRides] = useState([
+    {
+      id: "1",
+      driver: "Sameed",
+      from: "Main Campus",
+      destination: "Gulshan",
+      time: "10:00 AM",
+      date: "2024-11-28",
+      seatsAvailable: 3,
+    },
+    {
+      id: "2",
+      driver: "Saad",
+      from: "City Campus",
+      destination: "Johar",
+      time: "12:30 PM",
+      date: "2024-11-28",
+      seatsAvailable: 2,
+    },
+    {
+      id: "3",
+      driver: "Abaan",
+      from: "Main Campus",
+      destination: "Clifton",
+      time: "3:00 PM",
+      date: "2024-11-28",
+      seatsAvailable: 4,
+    },
+  ]);
 
   const handleLogin = () => {
     setIsLoggedIn(true); // Set the user as logged in
@@ -26,8 +54,47 @@ const App = () => {
   };
 
   const handleCreateRide = (newRide) => {
-    setActiveRide(newRide); // Set the new ride as the active booking
-    setRides([newRide, ...rides]); // Add the new ride to the top of the rides list
+    setActiveRide({ ...newRide, isCreatedByUser: true, totalPassengers: 0 });
+    setRides([newRide, ...rides]);
+  };
+
+  const handleCancelRide = () => {
+    if (activeRide) {
+      if (!activeRide.isCreatedByUser) {
+        // Restore seats for booked rides
+        setRides((prevRides) =>
+          prevRides.map((ride) =>
+            ride.id === activeRide.id
+              ? { ...ride, seatsAvailable: ride.seatsAvailable + 1 }
+              : ride
+          )
+        );
+      } else {
+        // Remove user-created ride
+        setRides((prevRides) =>
+          prevRides.filter((ride) => ride.id !== activeRide.id)
+        );
+      }
+      setActiveRide(null); // Clear active booking
+    }
+  };
+
+  const handleBookRide = (ride) => {
+    if (ride.seatsAvailable > 0 && !activeRide) {
+      setActiveRide({
+        ...ride,
+        from: "Home",
+        totalPassengers: 4 - ride.seatsAvailable + 1,
+        isCreatedByUser: false,
+      });
+      setRides((prevRides) =>
+        prevRides.map((r) =>
+          r.id === ride.id
+            ? { ...r, seatsAvailable: r.seatsAvailable - 1 }
+            : r
+        )
+      );
+    }
   };
 
   return (
@@ -55,6 +122,8 @@ const App = () => {
                     setRides={setRides}
                     activeRide={activeRide}
                     setActiveRide={setActiveRide}
+                    onBookRide={handleBookRide}
+                    onCancelRide={handleCancelRide}
                   />
                 }
               />
@@ -62,9 +131,7 @@ const App = () => {
               <Route
                 path="/create"
                 element={
-                  <CreateRide
-                    onCreateRide={handleCreateRide}
-                  />
+                  <CreateRide onCreateRide={handleCreateRide} />
                 }
               />
               <Route path="/profile" element={<Profile />} />

@@ -5,6 +5,7 @@ import "./CreateRide.css";
 const CreateRide = ({ onCreateRide }) => {
   const [rideDetails, setRideDetails] = useState({
     driver: "",
+    from: "",
     destination: "",
     time: "",
     date: "",
@@ -21,19 +22,20 @@ const CreateRide = ({ onCreateRide }) => {
   const handleCreateRide = () => {
     if (
       rideDetails.driver &&
+      rideDetails.from &&
       rideDetails.destination &&
       rideDetails.time &&
       rideDetails.date &&
       rideDetails.seatsAvailable
     ) {
       const newRide = {
-        id: Date.now(), // Unique ID
+        id: Date.now().toString(), // Generate a unique ID
         ...rideDetails,
         seatsAvailable: parseInt(rideDetails.seatsAvailable, 10),
       };
 
-      onCreateRide(newRide); // Add the new ride and set it as active
-      navigate("/"); // Redirect to the Available Rides page
+      onCreateRide(newRide);
+      navigate("/"); // Redirect to the main page
     } else {
       alert("Please fill in all fields.");
     }
@@ -46,8 +48,15 @@ const CreateRide = ({ onCreateRide }) => {
         <input
           type="text"
           name="driver"
-          placeholder="Your Name"
+          placeholder="Driver Name"
           value={rideDetails.driver}
+          onChange={handleInputChange}
+        />
+        <input
+          type="text"
+          name="from"
+          placeholder="From"
+          value={rideDetails.from}
           onChange={handleInputChange}
         />
         <input
@@ -76,7 +85,11 @@ const CreateRide = ({ onCreateRide }) => {
           value={rideDetails.seatsAvailable}
           onChange={handleInputChange}
         />
-        <button type="button" className="create-button" onClick={handleCreateRide}>
+        <button
+          type="button"
+          className="create-button"
+          onClick={handleCreateRide}
+        >
           Create Ride
         </button>
       </form>

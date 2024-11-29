@@ -1,53 +1,65 @@
 import React from "react";
 import ActiveBooking from "./ActiveBooking";
+import { useNavigate } from "react-router-dom";
 import "./CarpoolList.css";
 
-const CarpoolList = ({ rides, activeRide, setActiveRide, setRides }) => {
-  const handleBookRide = (ride) => {
-    if (ride.seatsAvailable > 0) {
-      setActiveRide({
-        driver: ride.driver,
-        destination: ride.destination,
-        time: ride.time,
-        from: "Home",
-        totalPassengers: 4 - ride.seatsAvailable,
-      });
-
-      setRides((prevRides) =>
-        prevRides.map((r) =>
-          r.id === ride.id
-            ? { ...r, seatsAvailable: r.seatsAvailable - 1 }
-            : r
-        )
-      );
-    } else {
-      alert("No seats available for this ride.");
-    }
-  };
+const CarpoolList = ({ rides, activeRide, onBookRide, onCancelRide }) => {
+  const navigate = useNavigate();
 
   return (
-    <div className="carpool-list-container">
+    <div className="common-container carpool-container">
+      {/* Display Active Booking */}
       {activeRide && (
         <ActiveBooking
           booking={activeRide}
-          onCancel={() => setActiveRide(null)}
+          onCancel={onCancelRide}
+          onViewProfile={() => navigate("/profile")}
         />
       )}
 
-      <h2>Available Rides</h2>
-      <ul className="ride-list">
-        {rides.map((ride) => (
-          <li key={ride.id} className="ride-item">
-            <div className="ride-info">
-              <p><strong>Driver:</strong> {ride.driver}</p>
-              <p><strong>Destination:</strong> {ride.destination}</p>
-              <p><strong>Time:</strong> {ride.time}</p>
-              <p><strong>Date:</strong> {ride.date}</p>
-              <p><strong>Seats Available:</strong> {ride.seatsAvailable}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
+      {/* Available Rides Table */}
+      <h2 className="title">Available Rides</h2>
+
+      <table className="carpool-table">
+        <thead>
+          <tr>
+            <th>Driver</th>
+            <th>From</th>
+            <th>Destination</th>
+            <th>Time</th>
+            <th>Date</th>
+            <th>Seats Available</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rides.map((ride) => (
+            <tr key={ride.id}>
+              <td>{ride.driver}</td>
+              <td>{ride.from}</td>
+              <td>{ride.destination}</td>
+              <td>{ride.time}</td>
+              <td>{ride.date}</td>
+              <td>{ride.seatsAvailable}</td>
+              <td>
+                <button
+                  className="book-button"
+                  onClick={() => onBookRide(ride)}
+                  disabled={!!activeRide}
+                >
+                  Book Ride
+                </button>
+                <button
+                  className="profile-button"
+                  onClick={() => navigate("/profile")}
+                >
+                  View Profile
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

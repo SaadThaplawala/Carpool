@@ -1,8 +1,10 @@
-//RideHistory
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./RideHistory.css";
 
 const RideHistory = () => {
+  const navigate = useNavigate();
+
   const rides = [
     {
       name: "John Doe",
@@ -27,6 +29,10 @@ const RideHistory = () => {
     },
   ];
 
+  const handleViewProfile = () => {
+    navigate("/profile"); // Redirect to Profile screen
+  };
+
   return (
     <div className="ride-history-container">
       <h2>Ride History</h2>
@@ -40,7 +46,12 @@ const RideHistory = () => {
             <p><strong>From:</strong> {ride.from}</p>
             <div className="card-buttons">
               <button className="card-button feedback-button">Feedback</button>
-              <button className="card-button view-profile-button">View Profile</button>
+              <button
+                className="card-button view-profile-button"
+                onClick={handleViewProfile}
+              >
+                View Profile
+              </button>
             </div>
           </div>
         ))}
