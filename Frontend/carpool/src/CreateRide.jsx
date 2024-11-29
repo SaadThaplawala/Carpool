@@ -55,7 +55,7 @@ const CreateRide = ({ onCreateRide }) => {
         <input
           type="text"
           name="from"
-          placeholder="From (e.g., Main Campus)"
+          placeholder="From"
           value={rideDetails.from}
           onChange={handleInputChange}
         />
