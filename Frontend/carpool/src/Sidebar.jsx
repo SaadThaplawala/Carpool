@@ -20,6 +20,7 @@ const Sidebar = ({ isOpen, onClose, onLogout }) => {
         <li onClick={() => handleNavigate("/")}>Available Rides</li>
         <li onClick={() => handleNavigate("/history")}>View Ride History</li>
         <li onClick={() => handleNavigate("/create")}>Create New Ride</li>
+        <li onClick={() => handleNavigate("/Profile")}>View Profile</li>
         <li onClick={() => handleNavigate("/settings")}>Settings</li>
         <li onClick={onLogout}>Logout</li>
       </ul>

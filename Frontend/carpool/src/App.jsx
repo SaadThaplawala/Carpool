@@ -7,6 +7,7 @@ import CreateRide from "./CreateRide";
 import Profile from "./Profile";
 import LoginScreen from "./LoginScreen";
 import SettingsScreen from "./SettingsScreen";
+import SignUpScreen from "./SignUpScreen"; // Import the new SignUpScreen
 import "./App.css";
 
 const App = () => {
@@ -33,7 +34,6 @@ const App = () => {
     <Router>
       {isLoggedIn ? (
         <>
-          {/* Sidebar and Menu Button */}
           <button
             className="menu-button"
             onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -46,7 +46,6 @@ const App = () => {
             onLogout={handleLogout}
           />
           <div className={`main-content ${sidebarOpen ? "shifted" : ""}`}>
-            {/* Protected Routes */}
             <Routes>
               <Route
                 path="/"
@@ -75,8 +74,11 @@ const App = () => {
           </div>
         </>
       ) : (
-        // Show the login screen if not logged in
-        <LoginScreen onLogin={handleLogin} />
+        <Routes>
+          <Route path="/" element={<LoginScreen onLogin={handleLogin} />} />
+          <Route path="/signup" element={<SignUpScreen />} /> {/* Add SignUpScreen */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
       )}
     </Router>
   );

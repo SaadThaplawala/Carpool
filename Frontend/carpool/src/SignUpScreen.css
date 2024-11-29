@@ -1,0 +1,108 @@
+/* General Reset */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Signup Screen Container */
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f9f9f9;
+}
+
+/* Header Bar */
+.header-bar {
+  width: 100%;
+  background-color: #570c27;
+  color: white;
+  padding: 15px 20px;
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Content Styling */
+.main-content {
+  width: 100%;
+  max-width: 400px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Signup Form Styling */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.signup-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form .form-group label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.signup-form .form-group input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.signup-form .form-group input:focus {
+  border-color: #570c27;
+}
+
+/* Buttons */
+.signup-form .form-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.signup-button {
+  background-color: #570c27;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-button:hover {
+  background-color: #6e1735;
+}
+
+/* Links */
+.form-links {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.form-links a {
+  color: #570c27;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.form-links a:hover {
+  color: #6e1735;
+}

@@ -1,19 +1,37 @@
 const oracledb = require('oracledb');
 
-async function connect() {
+let pool;
+
+async function initialize() {
     try {
-        const connection = await oracledb.getConnection({
+        pool = await oracledb.createPool({
             user: process.env.DB_USER,
             password: process.env.DB_PASSWORD,
             connectString: process.env.DB_CONNECTION_STRING,
         });
-        console.log("Connected to the database!");
-        return connection;
+        console.log("Connection pool started");
     } catch (err) {
-        console.error("Database connection failed:", err);
+        console.error("Failed to initialize the database pool:", err);
         throw err;
     }
 }
 
-module.exports = connect;
+async function getConnection() {
+    if (!pool) {
+        throw new Error("Database pool is not initialized. Call initialize() first.");
+    }
+    return pool.getConnection();
+}
 
+async function closePool() {
+    try {
+        if (pool) {
+            await pool.close();
+            console.log("Connection pool closed");
+        }
+    } catch (err) {
+        console.error("Failed to close the database pool:", err);
+    }
+}
+
+module.exports = { initialize, getConnection, closePool };

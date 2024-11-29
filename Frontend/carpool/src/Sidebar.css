@@ -1,36 +1,54 @@
-/* Sidebar.css
-/* Sidebar container */
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    background-color: #570c27;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .sidebar.open {
-    transform: translateX(0);
-  }
-  
-  .sidebar button {
-    background: none;
-    border: none;
-    color: white;
-    text-align: left;
-    font-size: 16px;
-    padding: 10px;
-    margin: 5px 0;
-    cursor: pointer;
-  }
-  
-  .sidebar button:hover {
-    background-color: #575757;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 20px;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar button {
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  font-size: 16px;
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.sidebar button:hover,
+.sidebar button:focus {
+  background-color: var(--hover-color);
+  outline: none;
+}
+
+.menu-button {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  z-index: 1002;
+  transition: background-color 0.3s ease;
+}
+
+.menu-button:hover {
+  background-color: var(--hover-color);
+}

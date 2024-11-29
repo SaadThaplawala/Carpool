@@ -11,6 +11,9 @@ async function getAllRides(req, res) {
 
 async function createRide(req, res) {
     const { location, date, time } = req.body;
+    if (!location || !date || !time) {
+        return res.status(400).json({ error: "All fields (location, date, time) are required" });
+    }
     try {
         const result = await rideService.createRide(location, date, time);
         res.status(201).json(result);
@@ -23,4 +26,3 @@ module.exports = {
     getAllRides,
     createRide,
 };
-

@@ -6,4 +6,3 @@ router.get('/rides', rideController.getAllRides);
 router.post('/rides', rideController.createRide);
 
 module.exports = router;
-
