@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 
 const Sidebar = ({ isOpen, onClose, onLogout }) => {
@@ -20,6 +19,7 @@ const Sidebar = ({ isOpen, onClose, onLogout }) => {
         <li onClick={() => handleNavigate("/")}>Available Rides</li>
         <li onClick={() => handleNavigate("/history")}>View Ride History</li>
         <li onClick={() => handleNavigate("/create")}>Create New Ride</li>
+        <li onClick={() => handleNavigate("/profile")}>Profile</li> {/* New Profile Button */}
         <li onClick={() => handleNavigate("/settings")}>Settings</li>
         <li onClick={onLogout}>Logout</li>
       </ul>
