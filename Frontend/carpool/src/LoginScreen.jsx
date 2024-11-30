@@ -8,12 +8,12 @@ const LoginScreen = ({ onLogin }) => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    onLogin(); // Notify parent component of login
-    navigate("/"); // Redirect to the CarpoolList screen
+    onLogin();
+    navigate("/");
   };
 
   const navigateToForgotPassword = () => {
-    navigate("/forgot-password"); // Navigate to Forgot Password screen
+    navigate("/forgot-password");
   };
 
   return (
@@ -49,7 +49,10 @@ const LoginScreen = ({ onLogin }) => {
               Sign Up
             </a>
             <br />
-            <button onClick={navigateToForgotPassword} className="forgot-password-link">
+            <button
+              onClick={navigateToForgotPassword}
+              className="forgot-password-link"
+            >
               Forgot Password?
             </button>
           </div>

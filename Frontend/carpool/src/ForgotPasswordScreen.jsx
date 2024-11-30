@@ -2,29 +2,25 @@ import React, { useState } from "react";
 import "./ForgotPasswordScreen.css";
 
 const ForgotPasswordScreen = ({ navigateTo }) => {
-  // State for displaying messages
   const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState(""); // 'success' or 'error'
+  const [messageType, setMessageType] = useState("");
 
   const handleConfirm = () => {
     setMessage("Password changed successfully.");
     setMessageType("success");
     setTimeout(() => {
       navigateTo("LoginScreen");
-    }, 2000); // Navigate after 2 seconds
+    }, 2000);
   };
 
   const handleCancel = () => {
-    setMessage("Password not saved.");
+    setMessage("Try Again!");
     setMessageType("error");
-    setTimeout(() => {
-      navigateTo("LoginScreen");
-    }, 2000); // Navigate after 2 seconds
   };
 
   return (
     <div className="forgot-password-container">
-      {/* Message Display */}
+      {/* Display Success or Error Messages */}
       {message && (
         <div
           className={`message-container ${
@@ -35,14 +31,11 @@ const ForgotPasswordScreen = ({ navigateTo }) => {
         </div>
       )}
 
-      {/* Card container */}
+      {/* Forgot Password Card */}
       <div className="forgot-password-card">
-        {/* Title Section */}
         <div className="forgot-password-header">
           <h1>Forgot Password</h1>
         </div>
-
-        {/* Inputs Section */}
         <div className="forgot-password-body">
           <label className="input-label">Enter New Password</label>
           <input
@@ -50,7 +43,6 @@ const ForgotPasswordScreen = ({ navigateTo }) => {
             className="input-field"
             placeholder="Enter New Password"
           />
-
           <label className="input-label">Confirm Password</label>
           <input
             type="password"
@@ -58,8 +50,6 @@ const ForgotPasswordScreen = ({ navigateTo }) => {
             placeholder="Confirm Password"
           />
         </div>
-
-        {/* Action Buttons */}
         <div className="forgot-password-footer">
           <button
             className="action-button confirm-button"
