@@ -1,57 +1,82 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./ForgotPasswordScreen.css"; // Create a CSS file for styling
+import "./ForgotPasswordScreen.css";
 
-const ForgotPasswordScreen = () => {
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const navigate = useNavigate();
+const ForgotPasswordScreen = ({ navigateTo }) => {
+  // State for displaying messages
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState(""); // 'success' or 'error'
 
   const handleConfirm = () => {
-    if (newPassword === confirmPassword) {
-      navigate("/active-booking"); // Redirect to ActiveBooking screen if passwords match
-    } else {
-      alert("Passwords do not match!");
-    }
+    setMessage("Password changed successfully.");
+    setMessageType("success");
+    setTimeout(() => {
+      navigateTo("LoginScreen");
+    }, 2000); // Navigate after 2 seconds
   };
 
   const handleCancel = () => {
-    navigate("/"); // Redirect to Login screen on cancel
+    setMessage("Password not saved.");
+    setMessageType("error");
+    setTimeout(() => {
+      navigateTo("LoginScreen");
+    }, 2000); // Navigate after 2 seconds
   };
 
   return (
     <div className="forgot-password-container">
-      <h2>Forgot Password</h2>
-      <div className="password-input-container">
-        <div className="form-group">
-          <label>Enter New Password</label>
+      {/* Message Display */}
+      {message && (
+        <div
+          className={`message-container ${
+            messageType === "success" ? "success-message" : "error-message"
+          }`}
+        >
+          {message}
+        </div>
+      )}
+
+      {/* Card container */}
+      <div className="forgot-password-card">
+        {/* Title Section */}
+        <div className="forgot-password-header">
+          <h1>Forgot Password</h1>
+        </div>
+
+        {/* Inputs Section */}
+        <div className="forgot-password-body">
+          <label className="input-label">Enter New Password</label>
           <input
             type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
+            className="input-field"
             placeholder="Enter New Password"
           />
-        </div>
-        <div className="form-group">
-          <label>Confirm Password</label>
+
+          <label className="input-label">Confirm Password</label>
           <input
             type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            className="input-field"
             placeholder="Confirm Password"
           />
         </div>
-      </div>
-      <div className="form-buttons">
-        <button onClick={handleConfirm} className="confirm-button">
-          Confirm
-        </button>
-        <button onClick={handleCancel} className="cancel-button">
-          Cancel
-        </button>
+
+        {/* Action Buttons */}
+        <div className="forgot-password-footer">
+          <button
+            className="action-button confirm-button"
+            onClick={handleConfirm}
+          >
+            Confirm
+          </button>
+          <button
+            className="action-button cancel-button"
+            onClick={handleCancel}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
-export default ForgotPasswordScreen; // Export component as default
+export default ForgotPasswordScreen;
