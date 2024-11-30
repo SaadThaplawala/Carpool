@@ -12,6 +12,10 @@ const LoginScreen = ({ onLogin }) => {
     navigate("/"); // Redirect to the CarpoolList screen
   };
 
+  const navigateToForgotPassword = () => {
+    navigate("/forgot-password"); // Navigate to Forgot Password screen
+  };
+
   return (
     <div className="login-container">
       <div className="header-bar">IBA Carpool App</div>
@@ -45,9 +49,9 @@ const LoginScreen = ({ onLogin }) => {
               Sign Up
             </a>
             <br />
-            <a href="/forgot-password" className="forgot-password-link">
+            <button onClick={navigateToForgotPassword} className="forgot-password-link">
               Forgot Password?
-            </a>
+            </button>
           </div>
         </div>
       </div>
