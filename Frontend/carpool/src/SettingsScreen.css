@@ -1,18 +1,18 @@
 .settings-container {
-    display: flex; /* Enable flexbox */
-    flex-direction: column; /* Align items in a column */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 20px;
     text-align: center;
     background-color: #f9f9f9;
-    min-height: 100vh; /* Full screen height */
-    width: 100%; /* Allow full width of the screen */
-    box-sizing: border-box; /* Include padding in width calculation */
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .settings-container h1 {
-    font-size: 28px; /* Larger heading for better appearance */
+    font-size: 28px;
     margin-bottom: 30px;
     color: #333;
 }
@@ -21,19 +21,25 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px; /* Increased padding for more space */
+    padding: 15px 20px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
-    width: 100%; /* Take up full width of the parent container */
-    max-width: 800px; /* Set a maximum width for readability */
-    box-sizing: border-box; /* Include padding and border in width */
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    transition: box-shadow 0.3s ease;
+}
+
+.settings-option:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .settings-option label {
     font-size: 18px;
     color: #333;
-    flex: 1; /* Allow label to take up extra space */
+    flex: 1;
     text-align: left;
 }
 
@@ -41,12 +47,15 @@
     background-color: #570c27;
     color: white;
     border: none;
-    padding: 10px 15px; /* Increase padding for better spacing */
+    padding: 12px 20px;
     cursor: pointer;
     border-radius: 5px;
-    font-size: 16px; /* Match font size with labels */
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .toggle-button:hover {
     background-color: #822040;
+    transform: translateY(-2px);
 }

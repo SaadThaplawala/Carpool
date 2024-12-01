@@ -1,83 +1,43 @@
 .create-ride-container {
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-  text-align: center;
-  font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-}
-
-.page-title {
-  font-size: 24px;
-  font-weight: bold;
-  color: #570c27;
-  margin-bottom: 30px;
+  height: 100vh; /* Full height for vertical centering */
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .create-ride-form {
   width: 100%;
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  max-width: 500px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
-.create-ride-form .form-group {
+.create-ride-form input,
+.create-ride-form select,
+.create-ride-form button {
   width: 100%;
-  margin-bottom: 15px;
-  text-align: left;
-}
-
-.create-ride-form .form-group label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
-}
-
-.create-ride-form .form-group input {
-  width: 100%;
+  margin: 10px 0;
   padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
 }
 
-.form-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.yes-button,
-.no-button {
-  width: 80px;
-  height: 40px;
-  font-size: 16px;
+.create-ride-form button {
+  background-color: #570c27;
+  color: #ffffff;
   font-weight: bold;
-  border: none;
-  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.yes-button {
-  background-color: #4caf50; /* Green */
-  color: white;
-}
-
-.no-button {
-  background-color: #f44336; /* Red */
-  color: white;
-}
-
-.yes-button:hover {
-  background-color: #45a049;
-}
-
-.no-button:hover {
-  background-color: #e53935;
+.create-ride-form button:hover {
+  background-color: #780f36;
 }

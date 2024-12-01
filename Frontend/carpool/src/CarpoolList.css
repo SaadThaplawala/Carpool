@@ -1,72 +1,37 @@
-/* Common container styling */
-.common-container {
-  font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 800px;
+.carpool-container {
   margin: 0 auto;
 }
 
-/* Specific styles for Carpool Page */
-.carpool-container {
-  margin-top: 50px;
-}
-
-.title {
-  font-size: 24px;
-  font-weight: bold;
-  color: #570c27;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-/* Styles for the table displaying available rides */
 .carpool-table {
-  border-collapse: collapse;
   width: 100%;
-  max-width: 800px;
-  margin: 20px 0;
-  text-align: left;
-}
-
-.carpool-table th,
-.carpool-table td {
-  border: 1px solid #ddd;
-  padding: 12px 15px;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
 .carpool-table th {
-  background-color: #570c27;
+  background-color: var(--primary-color);
   color: white;
+  padding: 10px;
 }
 
-.carpool-table tr:nth-child(even) {
-  background-color: #f9f9f9;
+.carpool-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
 }
 
 .carpool-table tr:hover {
-  background-color: #f1f1f1;
+  background-color: var(--secondary-color);
 }
 
 .book-button,
 .profile-button {
-  padding: 8px 12px;
-  margin: 5px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: var(--border-radius);
 }
 
 .book-button {
   background-color: #4caf50;
   color: white;
-}
-
-.book-button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
 }
 
 .profile-button {

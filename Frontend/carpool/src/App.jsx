@@ -7,13 +7,13 @@ import CreateRide from "./CreateRide";
 import Profile from "./Profile";
 import LoginScreen from "./LoginScreen";
 import SettingsScreen from "./SettingsScreen";
-import SignUpScreen from "./SignUpScreen"; // Import the new SignUpScreen
+import SignUpScreen from "./SignUpScreen";
 import "./App.css";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Login state
-  const [sidebarOpen, setSidebarOpen] = useState(false); // Sidebar toggle state
-  const [activeRide, setActiveRide] = useState(null); // State to store active booking
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [activeRide, setActiveRide] = useState(null);
   const [rides, setRides] = useState([
     {
       id: "1",
@@ -44,12 +44,9 @@ const App = () => {
     },
   ]);
 
-  const handleLogin = () => {
-    setIsLoggedIn(true); // Set the user as logged in
-  };
-
+  const handleLogin = () => setIsLoggedIn(true);
   const handleLogout = () => {
-    setIsLoggedIn(false); // Logout the user
+    setIsLoggedIn(false);
     setSidebarOpen(false);
   };
 
@@ -61,7 +58,6 @@ const App = () => {
   const handleCancelRide = () => {
     if (activeRide) {
       if (!activeRide.isCreatedByUser) {
-        // Restore seats for booked rides
         setRides((prevRides) =>
           prevRides.map((ride) =>
             ride.id === activeRide.id
@@ -70,12 +66,9 @@ const App = () => {
           )
         );
       } else {
-        // Remove user-created ride
-        setRides((prevRides) =>
-          prevRides.filter((ride) => ride.id !== activeRide.id)
-        );
+        setRides((prevRides) => prevRides.filter((ride) => ride.id !== activeRide.id));
       }
-      setActiveRide(null); // Clear active booking
+      setActiveRide(null);
     }
   };
 
@@ -83,15 +76,12 @@ const App = () => {
     if (ride.seatsAvailable > 0 && !activeRide) {
       setActiveRide({
         ...ride,
-        from: "Home",
         totalPassengers: 4 - ride.seatsAvailable + 1,
         isCreatedByUser: false,
       });
       setRides((prevRides) =>
         prevRides.map((r) =>
-          r.id === ride.id
-            ? { ...r, seatsAvailable: r.seatsAvailable - 1 }
-            : r
+          r.id === ride.id ? { ...r, seatsAvailable: r.seatsAvailable - 1 } : r
         )
       );
     }
@@ -113,37 +103,32 @@ const App = () => {
             onLogout={handleLogout}
           />
           <div className={`main-content ${sidebarOpen ? "shifted" : ""}`}>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <CarpoolList
-                    rides={rides}
-                    setRides={setRides}
-                    activeRide={activeRide}
-                    setActiveRide={setActiveRide}
-                    onBookRide={handleBookRide}
-                    onCancelRide={handleCancelRide}
-                  />
-                }
-              />
-              <Route path="/history" element={<RideHistory />} />
-              <Route
-                path="/create"
-                element={
-                  <CreateRide onCreateRide={handleCreateRide} />
-                }
-              />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/settings" element={<SettingsScreen />} />
-              <Route path="*" element={<Navigate to="/" />} />
-            </Routes>
+            <div className="center-container">
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <CarpoolList
+                      rides={rides}
+                      activeRide={activeRide}
+                      onBookRide={handleBookRide}
+                      onCancelRide={handleCancelRide}
+                    />
+                  }
+                />
+                <Route path="/history" element={<RideHistory />} />
+                <Route path="/create" element={<CreateRide onCreateRide={handleCreateRide} />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/settings" element={<SettingsScreen />} />
+                <Route path="*" element={<Navigate to="/" />} />
+              </Routes>
+            </div>
           </div>
         </>
       ) : (
         <Routes>
           <Route path="/" element={<LoginScreen onLogin={handleLogin} />} />
-          <Route path="/signup" element={<SignUpScreen />} /> {/* Add SignUpScreen */}
+          <Route path="/signup" element={<SignUpScreen />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       )}
