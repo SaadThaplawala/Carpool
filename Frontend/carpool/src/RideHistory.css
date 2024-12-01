@@ -2,22 +2,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 30px;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
     font-family: Arial, sans-serif;
-    width: 100%; /* Allow full width */
-    padding: 0 20px; /* Add padding for better spacing on edges */
+    box-sizing: border-box;
 }
 
 .ride-card-container {
-    width: 100%; /* Full width of the parent container */
-    max-width: 1200px; /* Set a reasonable maximum width for large screens */
-    overflow-y: auto;
-    max-height: 500px;
+    width: 100%;
+    max-width: 1200px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #f9f9f9;
-    padding: 10px; /* Add padding inside the container */
-    box-sizing: border-box; /* Include padding and border in width calculation */
+    padding: 10px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    max-height: 500px;
 }
 
 .ride-card {
@@ -25,16 +27,15 @@
     flex-direction: column;
     border: 1px solid #ddd;
     padding: 15px;
-    margin: 10px 0; /* Adjust spacing between cards */
+    margin: 10px 0;
     background-color: white;
     border-radius: 5px;
-    width: 100%; /* Take up full width of container */
-    box-sizing: border-box; /* Include padding and border in width */
+    box-sizing: border-box;
 }
 
 .ride-card p {
     margin: 5px 0;
-    font-size: 16px; /* Increase font size for better readability */
+    font-size: 16px;
 }
 
 .card-buttons {
@@ -44,8 +45,8 @@
 }
 
 .card-button {
-    padding: 10px 20px; /* Increase padding for larger buttons */
-    font-size: 16px; /* Match font size with text */
+    padding: 10px 20px;
+    font-size: 16px;
     font-weight: bold;
     border: none;
     border-radius: 5px;

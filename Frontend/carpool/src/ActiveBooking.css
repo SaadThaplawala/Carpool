@@ -1,32 +1,67 @@
+/* Active Booking Section */
 .active-booking-container {
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: #f9f9f9;
-  }
-  
-  .booking-info {
-    margin-bottom: 10px;
-  }
-  
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.booking-info {
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #333;
+}
+
+.booking-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* Cancel Button */
+.cancel-button {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-button:hover {
+  background-color: #e04343;
+}
+
+/* Profile Button */
+.profile-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.profile-button:hover {
+  background-color: #0056b3;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
   .booking-actions {
-    display: flex;
-    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  .cancel-button {
-    background-color: #ff4d4f;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+
+  .cancel-button, .profile-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
   }
-  
-  .profile-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
+}
