@@ -1,28 +1,28 @@
-const rideService = require('../services/rideService');
+// const rideService = require('../services/rideService');
 
-async function getAllRides(req, res) {
-    try {
-        const rides = await rideService.getAllRides();
-        res.status(200).json(rides);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-}
+// async function getAllRides(req, res) {
+//     try {
+//         const rides = await rideService.getAllRides();
+//         res.status(200).json(rides);
+//     } catch (err) {
+//         res.status(500).json({ error: err.message });
+//     }
+// }
 
-async function createRide(req, res) {
-    const { location, date, time } = req.body;
-    if (!location || !date || !time) {
-        return res.status(400).json({ error: "All fields (location, date, time) are required" });
-    }
-    try {
-        const result = await rideService.createRide(location, date, time);
-        res.status(201).json(result);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-}
+// async function createRide(req, res) {
+//     const { location, date, time } = req.body;
+//     if (!location || !date || !time) {
+//         return res.status(400).json({ error: "All fields (location, date, time) are required" });
+//     }
+//     try {
+//         const result = await rideService.createRide(location, date, time);
+//         res.status(201).json(result);
+//     } catch (err) {
+//         res.status(500).json({ error: err.message });
+//     }
+// }
 
-module.exports = {
-    getAllRides,
-    createRide,
-};
+// module.exports = {
+//     getAllRides,
+//     createRide,
+// };
