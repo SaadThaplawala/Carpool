@@ -91,10 +91,7 @@ const App = () => {
     <Router>
       {isLoggedIn ? (
         <>
-          <button
-            className="menu-button"
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-          >
+          <button className="menu-button" onClick={() => setSidebarOpen(!sidebarOpen)}>
             ☰
           </button>
           <Sidebar
