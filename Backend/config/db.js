@@ -1,21 +1,13 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
-
-
-console.log("MONGO_URI:", process.env.MONGO_URI); // Debugging statement
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(process.env.MONGO_URI); // No options needed for MongoDB driver 4.0+
     console.log("Connected to MongoDB");
-  } catch (err) {
-    console.error("Failed to connect to MongoDB", err);
-    process.exit(1); // Exit the process with failure
+  } catch (error) {
+    console.error("Failed to connect to MongoDB", error);
+    process.exit(1); // Exit the process on failure
   }
 };
 
-
-module.exports = connectDB; // Only export the `connectDB` function
+module.exports = connectDB;

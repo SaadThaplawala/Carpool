@@ -5,9 +5,9 @@ import "./ForgotPasswordScreen.css";
 const ForgotPasswordScreen = () => {
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); // State to display messages
   const navigate = useNavigate(); // Using navigate hook to redirect
 
   const validateEmail = (email) => {
@@ -16,12 +16,6 @@ const ForgotPasswordScreen = () => {
   };
 
   const handleConfirm = () => {
-    if (!validateEmail(email)) {
-      setMessage("Wrong Email Format");
-      setMessageType("error");
-      return;
-    }
-
     if (password === confirmPassword) {
       setMessage("Password changed successfully.");
       setMessageType("success");
@@ -35,19 +29,15 @@ const ForgotPasswordScreen = () => {
   };
 
   const handleCancel = () => {
-    navigate("/"); // Redirect to LoginScreen
+    navigate("/"); // Redirect to LoginScreen without validation
   };
 
   return (
     <div className="forgot-password-container">
-      {/* Display Success or Error Messages */}
-      {message && (
-        <div
-          className={`message-container ${
-            messageType === "success" ? "success-message" : "error-message"
-          }`}
-        >
-          {message}
+      {/* Display Error Message */}
+      {errorMessage && (
+        <div className="error-message">
+          <p>{errorMessage}</p>
         </div>
       )}
 
