@@ -41,6 +41,15 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Internal Server Error" });
 });
 
+// Catch-all for undefined routes
+app.use((req, res) => {
+  res.status(404).json({ error: "Route not found" });
+});
+console.log("Auth Routes:", authRoutes.stack.map((layer) => layer.route));
+console.log("Ride Routes:", rideRoutes.stack.map((layer) => layer.route));
+console.log("Profile Routes:", profileRoutes.stack.map((layer) => layer.route));
+
+
 // Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
