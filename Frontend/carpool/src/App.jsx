@@ -8,12 +8,14 @@ import Profile from "./Profile";
 import LoginScreen from "./LoginScreen";
 import SettingsScreen from "./SettingsScreen";
 import SignUpScreen from "./SignUpScreen";
+import ForgotPasswordScreen from "./ForgotPasswordScreen"; // Import ForgotPasswordScreen
+import ActiveBooking from "./ActiveBooking"; // Import ActiveBooking screen
 import "./App.css";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeRide, setActiveRide] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Login state
+  const [sidebarOpen, setSidebarOpen] = useState(false); // Sidebar toggle state
+  const [activeRide, setActiveRide] = useState(null); // State to store active booking
   const [rides, setRides] = useState([
     {
       id: "1",
@@ -44,17 +46,22 @@ const App = () => {
     },
   ]);
 
+  // Handle login
   const handleLogin = () => setIsLoggedIn(true);
+
+  // Handle logout
   const handleLogout = () => {
     setIsLoggedIn(false);
     setSidebarOpen(false);
   };
 
+  // Handle ride creation
   const handleCreateRide = (newRide) => {
     setActiveRide({ ...newRide, isCreatedByUser: true, totalPassengers: 0 });
     setRides([newRide, ...rides]);
   };
 
+  // Handle ride cancellation
   const handleCancelRide = () => {
     if (activeRide) {
       if (!activeRide.isCreatedByUser) {
@@ -72,6 +79,7 @@ const App = () => {
     }
   };
 
+  // Handle ride booking
   const handleBookRide = (ride) => {
     if (ride.seatsAvailable > 0 && !activeRide) {
       setActiveRide({
@@ -91,6 +99,7 @@ const App = () => {
     <Router>
       {isLoggedIn ? (
         <>
+          {/* Sidebar & Main Content for Logged-in Users */}
           <button className="menu-button" onClick={() => setSidebarOpen(!sidebarOpen)}>
             ☰
           </button>
@@ -117,6 +126,7 @@ const App = () => {
                 <Route path="/create" element={<CreateRide onCreateRide={handleCreateRide} />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/settings" element={<SettingsScreen />} />
+                <Route path="/active-booking" element={<ActiveBooking />} />
                 <Route path="*" element={<Navigate to="/" />} />
               </Routes>
             </div>
@@ -124,8 +134,10 @@ const App = () => {
         </>
       ) : (
         <Routes>
+          {/* Routes for Logged-out Users */}
           <Route path="/" element={<LoginScreen onLogin={handleLogin} />} />
           <Route path="/signup" element={<SignUpScreen />} />
+          <Route path="/forgot-password" element={<ForgotPasswordScreen navigateTo={(screen) => setIsLoggedIn(screen === "LoginScreen")} />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       )}

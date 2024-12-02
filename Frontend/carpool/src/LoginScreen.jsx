@@ -1,19 +1,20 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Ensure useNavigate is imported
 import "./LoginScreen.css";
 
 const LoginScreen = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Use navigate hook for redirection
 
   const handleLogin = () => {
+    // On successful login, call onLogin and redirect to the home page
     onLogin();
-    navigate("/");
+    navigate("/"); // Redirect after login (can be changed to a dashboard or home screen)
   };
 
   const navigateToForgotPassword = () => {
-    navigate("/forgot-password");
+    navigate("/forgot-password"); // Redirect to ForgotPassword screen
   };
 
   return (

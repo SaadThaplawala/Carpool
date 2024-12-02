@@ -1,21 +1,29 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Importing useNavigate hook
 import "./ForgotPasswordScreen.css";
 
-const ForgotPasswordScreen = ({ navigateTo }) => {
+const ForgotPasswordScreen = () => {
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate(); // Using navigate hook to redirect
 
   const handleConfirm = () => {
-    setMessage("Password changed successfully.");
-    setMessageType("success");
-    setTimeout(() => {
-      navigateTo("LoginScreen");
-    }, 2000);
+    if (password === confirmPassword) {
+      setMessage("Password changed successfully.");
+      setMessageType("success");
+      setTimeout(() => {
+        navigate("/"); // Redirect to LoginScreen
+      }, 2000);
+    } else {
+      setMessage("Passwords don't match");
+      setMessageType("error");
+    }
   };
 
   const handleCancel = () => {
-    setMessage("Try Again!");
-    setMessageType("error");
+    navigate("/"); // Redirect to LoginScreen
   };
 
   return (
@@ -42,12 +50,16 @@ const ForgotPasswordScreen = ({ navigateTo }) => {
             type="password"
             className="input-field"
             placeholder="Enter New Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <label className="input-label">Confirm Password</label>
           <input
             type="password"
             className="input-field"
             placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
         <div className="forgot-password-footer">
