@@ -5,11 +5,23 @@ import "./ForgotPasswordScreen.css";
 const ForgotPasswordScreen = () => {
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate(); // Using navigate hook to redirect
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@(khi\.iba\.edu\.pk|iba\.edu\.pk)$/;
+    return emailRegex.test(email);
+  };
+
   const handleConfirm = () => {
+    if (!validateEmail(email)) {
+      setMessage("Wrong Email Format");
+      setMessageType("error");
+      return;
+    }
+
     if (password === confirmPassword) {
       setMessage("Password changed successfully.");
       setMessageType("success");
@@ -45,6 +57,14 @@ const ForgotPasswordScreen = () => {
           <h1>Forgot Password</h1>
         </div>
         <div className="forgot-password-body">
+          <label className="input-label">Enter Email</label>
+          <input
+            type="email"
+            className="input-field"
+            placeholder="Enter Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <label className="input-label">Enter New Password</label>
           <input
             type="password"
