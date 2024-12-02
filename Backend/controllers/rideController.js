@@ -1,5 +1,5 @@
 const Ride = require("../models/rideModel");
-const Booking = require("../models/bookingModel"); // Create a new model for ride bookings
+const Booking = require("../models/bookingModel"); // Only declare once at the top
 
 // Create a new ride
 exports.createRide = async (req, res) => {
@@ -17,32 +17,29 @@ exports.createRide = async (req, res) => {
   }
 };
 
-
 // Cancel a booking
 exports.cancelBooking = async (req, res) => {
-    try {
-      const { bookingId } = req.body;
-  
-      const booking = await Booking.findById(bookingId).populate("rideId");
-      if (!booking) return res.status(404).json({ error: "Booking not found" });
-  
-      if (booking.status !== "active") return res.status(400).json({ error: "Booking already canceled or completed" });
-  
-      // Update booking and ride
-      booking.status = "canceled";
-      await booking.save();
-  
-      booking.rideId.seatsAvailable += 1;
-      await booking.rideId.save();
-  
-      res.status(200).json({ message: "Booking canceled successfully" });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "Internal Server Error" });
-    }
-  };
-  
+  try {
+    const { bookingId } = req.body;
 
+    const booking = await Booking.findById(bookingId).populate("rideId");
+    if (!booking) return res.status(404).json({ error: "Booking not found" });
+
+    if (booking.status !== "active") return res.status(400).json({ error: "Booking already canceled or completed" });
+
+    // Update booking and ride
+    booking.status = "canceled";
+    await booking.save();
+
+    booking.rideId.seatsAvailable += 1;
+    await booking.rideId.save();
+
+    res.status(200).json({ message: "Booking canceled successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
 // List rides created by the user (Active Bookings)
 exports.listUserRides = async (req, res) => {
@@ -58,18 +55,15 @@ exports.listUserRides = async (req, res) => {
 
 // List user's ride history (past rides)
 exports.listUserRideHistory = async (req, res) => {
-    try {
-      const userId = req.user.userId;
-      const rideHistory = await Ride.find({ driverId: userId, dateTime: { $lt: new Date() } });
-      res.status(200).json(rideHistory);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: "Internal Server Error" });
-    }
-  };
-  
-
-  const Booking = require("../models/bookingModel"); // Create a new model for ride bookings
+  try {
+    const userId = req.user.userId;
+    const rideHistory = await Ride.find({ driverId: userId, dateTime: { $lt: new Date() } });
+    res.status(200).json(rideHistory);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
 // Book a ride
 exports.bookRide = async (req, res) => {
@@ -100,8 +94,6 @@ exports.bookRide = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
-
 
 // List all rides
 exports.listRides = async (req, res) => {
