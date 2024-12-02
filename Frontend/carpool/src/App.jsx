@@ -97,50 +97,56 @@ const App = () => {
 
   return (
     <Router>
-      {isLoggedIn ? (
-        <>
-          {/* Sidebar & Main Content for Logged-in Users */}
-          <button className="menu-button" onClick={() => setSidebarOpen(!sidebarOpen)}>
-            ☰
-          </button>
-          <Sidebar
-            isOpen={sidebarOpen}
-            onClose={() => setSidebarOpen(false)}
-            onLogout={handleLogout}
-          />
-          <div className={`main-content ${sidebarOpen ? "shifted" : ""}`}>
-            <div className="center-container">
-              <Routes>
-                <Route
-                  path="/"
-                  element={
-                    <CarpoolList
-                      rides={rides}
-                      activeRide={activeRide}
-                      onBookRide={handleBookRide}
-                      onCancelRide={handleCancelRide}
-                    />
-                  }
-                />
-                <Route path="/history" element={<RideHistory />} />
-                <Route path="/create" element={<CreateRide onCreateRide={handleCreateRide} />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/settings" element={<SettingsScreen />} />
-                <Route path="/active-booking" element={<ActiveBooking />} />
-                <Route path="*" element={<Navigate to="/" />} />
-              </Routes>
+      <div>
+
+        {isLoggedIn ? (
+          <>
+            {/* Sidebar & Main Content for Logged-in Users */}
+            <button className="menu-button" onClick={() => setSidebarOpen(!sidebarOpen)}>
+              ☰
+            </button>
+            <Sidebar
+              isOpen={sidebarOpen}
+              onClose={() => setSidebarOpen(false)}
+              onLogout={handleLogout}
+            />
+            <div className={`main-content ${sidebarOpen ? "shifted" : ""}`}>
+              <div className="center-container">
+                <Routes>
+                  <Route
+                    path="/"
+                    element={
+                      <CarpoolList
+                        rides={rides}
+                        activeRide={activeRide}
+                        onBookRide={handleBookRide}
+                        onCancelRide={handleCancelRide}
+                      />
+                    }
+                  />
+                  <Route path="/history" element={<RideHistory />} />
+                  <Route path="/create" element={<CreateRide onCreateRide={handleCreateRide} />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/settings" element={<SettingsScreen />} />
+                  <Route path="/active-booking" element={<ActiveBooking />} />
+                  <Route path="*" element={<Navigate to="/" />} />
+                </Routes>
+              </div>
             </div>
-          </div>
-        </>
-      ) : (
-        <Routes>
-          {/* Routes for Logged-out Users */}
-          <Route path="/" element={<LoginScreen onLogin={handleLogin} />} />
-          <Route path="/signup" element={<SignUpScreen />} />
-          <Route path="/forgot-password" element={<ForgotPasswordScreen navigateTo={(screen) => setIsLoggedIn(screen === "LoginScreen")} />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      )}
+          </>
+        ) : (
+          <Routes>
+            {/* Routes for Logged-out Users */}
+            <Route path="/" element={<LoginScreen onLogin={handleLogin} />} />
+            <Route path="/signup" element={<SignUpScreen />} />
+            <Route
+              path="/forgot-password"
+              element={<ForgotPasswordScreen navigateTo={(screen) => setIsLoggedIn(screen === "LoginScreen")} />}
+            />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        )}
+      </div>
     </Router>
   );
 };

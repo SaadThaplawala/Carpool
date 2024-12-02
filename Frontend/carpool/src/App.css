@@ -10,11 +10,16 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: linear-gradient(to bottom, #f9f9f9, #ffffff);
-  color: var(--text-color);
+  color: var(--text-color); /* Default text color */
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh; /* Full viewport height for vertical centering */
+}
+
+/* Specific styling for login screen */
+.login-screen {
+  color: #fff; /* Override text color for login screen */
 }
 
 .common-container {
@@ -48,7 +53,7 @@ h2 {
   font-size: 28px;
   font-weight: bold;
   color: var(--primary-color);
-  margin-bottom: 20px;
+  margin: 0; /* Remove bottom margin for better alignment */
 }
 
 /* Global Styling for Forms */
@@ -106,4 +111,18 @@ form input:focus {
 .sidebar-button:hover {
   background-color: var(--button-hover-color);
   transform: scale(1.02);
+}
+
+/* Header Styling */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px; /* Space between logo and text */
+  margin-bottom: 20px;
+}
+
+.iba-logo {
+  width: 50px; /* Adjust as needed */
+  height: auto;
 }
