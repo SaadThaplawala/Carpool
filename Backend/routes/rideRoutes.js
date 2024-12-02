@@ -1,5 +1,12 @@
 const express = require("express");
-const { createRide, listRides } = require("../controllers/rideController");
+const {
+  createRide,
+  listRides,
+  listUserRides,
+  listUserRideHistory,
+  bookRide,
+  cancelBooking,
+} = require("../controllers/rideController");
 const authMiddleware = require("../middlewares/authMiddleware");
 const router = express.Router();
 
@@ -8,10 +15,17 @@ router.post("/create", authMiddleware, createRide);
 
 // List available rides
 router.get("/list", listRides);
-router.get("/my-active-bookings", authMiddleware, listUserRides);
-router.get("/my-ride-history", authMiddleware, listUserRideHistory);
-router.post("/book", authMiddleware, bookRide);
-router.post("/cancel-booking", authMiddleware, cancelBooking);
 
+// List active bookings for the user
+router.get("/my-active-bookings", authMiddleware, listUserRides);
+
+// List ride history for the user
+router.get("/my-ride-history", authMiddleware, listUserRideHistory);
+
+// Book a ride
+router.post("/book", authMiddleware, bookRide);
+
+// Cancel a booking
+router.post("/cancel-booking", authMiddleware, cancelBooking);
 
 module.exports = router;

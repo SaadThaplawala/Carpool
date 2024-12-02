@@ -1,4 +1,8 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
+
+
+console.log("MONGO_URI:", process.env.MONGO_URI); // Debugging statement
 
 const connectDB = async () => {
   try {
@@ -9,10 +13,9 @@ const connectDB = async () => {
     console.log("Connected to MongoDB");
   } catch (err) {
     console.error("Failed to connect to MongoDB", err);
-    process.exit(1); // Exit process on failure
+    process.exit(1); // Exit the process with failure
   }
 };
 
-connectDB(); // Immediately connect to DB
 
-module.exports = mongoose; // Export the connection
+module.exports = connectDB; // Only export the `connectDB` function
