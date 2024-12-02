@@ -3,39 +3,37 @@ import { useNavigate } from "react-router-dom"; // Importing useNavigate hook
 import "./ForgotPasswordScreen.css";
 
 const ForgotPasswordScreen = () => {
-  const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); // State to display messages
   const navigate = useNavigate(); // Using navigate hook to redirect
 
   const handleConfirm = () => {
-    if (password === confirmPassword) {
-      setMessage("Password changed successfully.");
-      setMessageType("success");
-      setTimeout(() => {
-        navigate("/"); // Redirect to LoginScreen
-      }, 2000);
-    } else {
-      setMessage("Passwords don't match");
-      setMessageType("error");
+    if (!password || !confirmPassword) {
+      // Check if fields are empty
+      setErrorMessage("Try Again!"); // Display error message
+      return;
     }
+    if (password !== confirmPassword) {
+      // Check if passwords match
+      setErrorMessage("Passwords don't match");
+      return;
+    }
+    // If all conditions are met, redirect to LoginScreen
+    setErrorMessage(""); // Clear error message
+    navigate("/"); // Redirect to LoginScreen
   };
 
   const handleCancel = () => {
-    navigate("/"); // Redirect to LoginScreen
+    navigate("/"); // Redirect to LoginScreen without validation
   };
 
   return (
     <div className="forgot-password-container">
-      {/* Display Success or Error Messages */}
-      {message && (
-        <div
-          className={`message-container ${
-            messageType === "success" ? "success-message" : "error-message"
-          }`}
-        >
-          {message}
+      {/* Display Error Message */}
+      {errorMessage && (
+        <div className="error-message">
+          <p>{errorMessage}</p>
         </div>
       )}
 
