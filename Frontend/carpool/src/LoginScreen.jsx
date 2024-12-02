@@ -38,7 +38,13 @@ const LoginScreen = ({ onLogin }) => {
 
   return (
     <div className="login-container">
-      <div className="header-bar">IBA Carpool App</div>
+      {/* Header with Logo and Heading */}
+      <div className="login-header">
+        <img src="/iba-logo.png" alt="IBA Logo" className="iba-logo" />
+        <h1 className="app-heading">IBA Carpool App</h1>
+      </div>
+
+      {/* Main Login Form */}
       <div className="main-content">
         <div className="login-form">
           {/* Display Error Message */}
@@ -48,7 +54,7 @@ const LoginScreen = ({ onLogin }) => {
             <label>ERP/Email</label>
             <input
               type="email"
-              placeholder="Enter your ERP/Email"
+              placeholder="Enter your Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />

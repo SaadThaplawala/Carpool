@@ -1,40 +1,82 @@
 .carpool-container {
   margin: 0 auto;
+  padding: 20px;
+  max-width: 1200px; /* Maximum width for container */
+}
+
+.center-container {
+  margin-top: 30px;
+}
+
+.title {
+  font-size: 32px;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .carpool-table {
   width: 100%;
+  max-width: 100%; /* Ensure the table fits within the container */
   border-collapse: collapse;
   margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius); /* Rounded corners for table */
+}
+
+.carpool-table th,
+.carpool-table td {
+  padding: 15px; /* Added more padding for spacing */
+  text-align: left; /* Align text to the left for better readability */
+  font-size: 16px;
 }
 
 .carpool-table th {
   background-color: var(--primary-color);
   color: white;
-  padding: 10px;
+  font-weight: bold;
 }
 
-.carpool-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
+.carpool-table tr:nth-child(even) {
+  background-color: #f9f9f9; /* Add alternating row colors */
 }
 
 .carpool-table tr:hover {
   background-color: var(--secondary-color);
+  cursor: pointer; /* Pointer cursor for rows */
 }
 
 .book-button,
 .profile-button {
-  padding: 8px 15px;
+  padding: 10px 20px;
   border-radius: var(--border-radius);
+  font-size: 14px; /* Adjust font size */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for hover */
 }
 
 .book-button {
-  background-color: #4caf50;
+  background-color: #570c27;
   color: white;
+  margin-right: 15px; /* Space between buttons */
+  border: none;
+}
+
+.book-button:hover {
+  background-color: #570c27; /* Darker green on hover */
 }
 
 .profile-button {
-  background-color: #008cba;
+  background-color: #570c27;
   color: white;
+  border: none;
+}
+
+.profile-button:hover {
+  background-color: #570c27; /* Darker blue on hover */
+}
+
+.book-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed; /* Disabled button styling */
 }
