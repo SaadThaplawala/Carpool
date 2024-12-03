@@ -1,60 +1,146 @@
-.login-container {
-  background-color: var(--primary-color);
-  padding: 40px;
-  border-radius: var(--border-radius);
-  max-width: 400px;
-  margin: 50px auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  text-align: center; /* Center content */
+:root {
+  --primary-color: #570c27;
+  --secondary-color: #f9f9f9;
+  --button-hover-color: #720d34;
+  --text-color: #333;
+  --border-radius: 8px;
 }
 
-header {
-  color: #ffffff;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #f9f9f9, #ffffff);
+  color: var(--text-color); /* Default text color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Full viewport height for vertical centering */
+}
+
+/* Login Screen Styles */
+.login-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #570c27; /* Set the background color of the form to #570c27 */
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styling */
+.login-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.iba-logo {
+  width: 50px; /* Adjust size as needed */
+  height: auto;
+}
+
+.app-heading {
   font-size: 28px;
-  margin-bottom: 30px;
+  color: white; /* Set the heading text color to white */
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Main Login Form Styling */
+.main-content {
+  text-align: center;
 }
 
 .login-form {
-  background-color: white;
-  border-radius: var(--border-radius);
-  padding: 30px 20px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px; /* Space between form and signup button */
-}
-
-.login-form button {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 12px 24px; /* Increase button size */
-  font-size: 18px; /* Larger font size */
-  border-radius: var(--border-radius);
-  width: 100%; /* Make button take full width */
-}
-
-.login-form button:hover {
-  background-color: var(--button-hover-color);
-}
-
-.login-form .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px; /* Add space between fields */
+  align-items: center;
 }
 
-.login-form .form-group label {
-  margin-bottom: 8px; /* Space between label and input field */
-  font-size: 16px;
+.form-group {
+  width: 100%;
+  margin-bottom: 15px;
+  text-align: left;
 }
 
-.login-form .form-group input {
-  padding: 10px;
+.form-group label {
   font-size: 16px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
   border: 1px solid #ddd;
   border-radius: var(--border-radius);
+  font-size: 16px;
 }
 
-.login-form .form-group input:focus {
+.form-group input:focus {
   border-color: var(--primary-color);
   outline: none;
   box-shadow: 0 0 5px rgba(87, 12, 39, 0.3);
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+/* Button Styling */
+.form-buttons {
+  width: 100%;
+}
+
+.login-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: var(--button-hover-color);
+}
+
+.form-links {
+  margin-top: 20px;
+}
+
+.signup-link,
+.forgot-password-link {
+  font-size: 14px;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+/* Hover effect for Sign Up link */
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+/* Make Forgot Password button look like Sign Up link with hover effect */
+.forgot-password-link {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  padding: 0;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.forgot-password-link:hover {
+  background-color: var(--primary-color); /* Add background hover */
+  color: white; /* Change text color to white on hover */
+  text-decoration: underline; /* Remove underline on hover */
 }
