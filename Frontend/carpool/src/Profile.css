@@ -1,40 +1,110 @@
+/* Profile.css */
+
+/* General Container Styles */
 .profile-container {
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: "Arial", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  background-color: #f9f9f9; /* Matches the LoginScreen background */
   box-sizing: border-box;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for elevation */
+  border-radius: 10px;
+  max-width: 800px;
+  margin: 0 auto; /* Center-align the profile card */
 }
 
+/* Header Section */
 .profile-header {
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 2rem; /* Slightly larger than LoginScreen title */
+  font-weight: bold;
   margin-bottom: 20px;
-  color: #333;
+  color: #007bff; /* Matches button color from LoginScreen */
 }
 
-.profile-section {
-  margin-bottom: 30px;
-  width: 100%;
-  max-width: 800px;
-}
-
+/* Section Titles */
 .profile-section h2 {
   font-size: 1.5rem;
   margin-bottom: 10px;
-  color: #570c27;
+  color: #0056b3; /* Matches hover color for buttons in LoginScreen */
+  border-bottom: 2px solid #007bff; /* Underline for distinction */
+  padding-bottom: 5px;
+  text-transform: uppercase;
 }
 
+/* Profile Details Styling */
 .profile-details {
   list-style-type: none;
   padding-left: 0;
+  margin: 0;
 }
 
 .profile-details li {
   font-size: 1rem;
-  margin-bottom: 8px;
-  color: #555;
+  margin-bottom: 10px;
+  color: #333; /* Neutral, darker color for better readability */
+  line-height: 1.5;
+}
+
+.profile-details li span {
+  font-weight: bold;
+  color: #007bff; /* Highlighted text for emphasis */
+}
+
+/* Buttons for Edit or Actions */
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.action-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+  background-color: #0056b3; /* Hover effect */
+}
+
+.action-button.secondary {
+  background-color: #6c757d; /* Gray secondary button */
+}
+
+.action-button.secondary:hover {
+  background-color: #5a6268;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+  .profile-container {
+    padding: 15px;
+  }
+
+  .profile-header {
+    font-size: 1.8rem;
+  }
+
+  .profile-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .profile-details li {
+    font-size: 0.9rem;
+  }
+
+  .action-button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
 }

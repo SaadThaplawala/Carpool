@@ -45,10 +45,10 @@ const LoginScreen = ({ onLogin }) => {
           {message && <div className="error-message">{message}</div>}
 
           <div className="form-group">
-            <label>ERP/Email</label>
+            <label>IBA Email</label>
             <input
               type="email"
-              placeholder="Enter your ERP/Email"
+              placeholder="Enter your Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
