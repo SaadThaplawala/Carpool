@@ -8,6 +8,7 @@ const CarpoolList = ({ rides, activeRide, onBookRide, onCancelRide }) => {
 
   return (
     <div className="carpool-container">
+      {/* Display Active Booking if available */}
       {activeRide && (
         <ActiveBooking
           booking={activeRide}
@@ -15,6 +16,8 @@ const CarpoolList = ({ rides, activeRide, onBookRide, onCancelRide }) => {
           onViewProfile={() => navigate("/profile")}
         />
       )}
+      
+      {/* Available Rides Table */}
       <div className="center-container">
         <h2 className="title">Available Rides</h2>
         <table className="carpool-table">
@@ -30,6 +33,7 @@ const CarpoolList = ({ rides, activeRide, onBookRide, onCancelRide }) => {
             </tr>
           </thead>
           <tbody>
+            {/* Iterate through available rides and display them */}
             {rides.map((ride) => (
               <tr key={ride.id}>
                 <td>{ride.driver}</td>
@@ -39,13 +43,15 @@ const CarpoolList = ({ rides, activeRide, onBookRide, onCancelRide }) => {
                 <td>{ride.date}</td>
                 <td>{ride.seatsAvailable}</td>
                 <td>
+                  {/* Book Ride Button */}
                   <button
                     className="book-button"
                     onClick={() => onBookRide(ride)}
-                    disabled={!!activeRide}
+                    disabled={!!activeRide} // Disable button if a ride is active
                   >
                     Book Ride
                   </button>
+                  {/* View Profile Button */}
                   <button
                     className="profile-button"
                     onClick={() => navigate("/profile")}
