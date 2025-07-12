@@ -1,6 +1,7 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const generateToken = require("../config/jwt");
+const { handleError } = require("../utils/errorHandler");
 
 // Get user profile
 exports.getProfile = async (req, res) => {
@@ -10,8 +11,7 @@ exports.getProfile = async (req, res) => {
 
     res.status(200).json(user);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    handleError(error, res);
   }
 };
 
@@ -30,7 +30,6 @@ exports.updateProfile = async (req, res) => {
     await user.save();
     res.status(200).json({ message: "Profile updated successfully", user });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    handleError(error, res);
   }
 };

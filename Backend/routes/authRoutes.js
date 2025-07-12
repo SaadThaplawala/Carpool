@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
+const generateToken = require("../config/jwt");
 const router = express.Router();
 
 // Signup route
@@ -58,8 +59,8 @@ router.post("/login", async (req, res) => {
       return res.status(400).json({ error: "Invalid email or password" });
     }
 
-    // Create JWT token
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+    // Create JWT token using utility
+    const token = generateToken(user._id);
 
     res.status(200).json({ token });
   } catch (error) {

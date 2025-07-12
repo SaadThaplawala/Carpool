@@ -1,5 +1,6 @@
 const Ride = require("../models/rideModel");
-const Booking = require("../models/bookingModel"); // Only declare once at the top
+const Booking = require("../models/bookingModel");
+const { handleError } = require("../utils/errorHandler");
 
 // Create a new ride
 exports.createRide = async (req, res) => {
@@ -12,8 +13,7 @@ exports.createRide = async (req, res) => {
 
     res.status(201).json({ message: "Ride created successfully", ride: newRide });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    handleError(error, res);
   }
 };
 
@@ -36,8 +36,7 @@ exports.cancelBooking = async (req, res) => {
 
     res.status(200).json({ message: "Booking canceled successfully" });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    handleError(error, res);
   }
 };
 
@@ -48,8 +47,7 @@ exports.listUserRides = async (req, res) => {
     const activeRides = await Ride.find({ driverId: userId, dateTime: { $gte: new Date() } });
     res.status(200).json(activeRides);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    handleError(error, res);
   }
 };
 
@@ -60,8 +58,7 @@ exports.listUserRideHistory = async (req, res) => {
     const rideHistory = await Ride.find({ driverId: userId, dateTime: { $lt: new Date() } });
     res.status(200).json(rideHistory);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    handleError(error, res);
   }
 };
 
@@ -90,8 +87,7 @@ exports.bookRide = async (req, res) => {
 
     res.status(201).json({ message: "Ride booked successfully", booking });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    handleError(error, res);
   }
 };
 
@@ -101,7 +97,7 @@ exports.listRides = async (req, res) => {
     const rides = await Ride.find({ dateTime: { $gte: new Date() }, seatsAvailable: { $gt: 0 } });
     res.status(200).json(rides);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+    handleError(error, res);
   }
 };
+
