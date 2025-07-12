@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SignupScreen.css";
@@ -13,12 +12,13 @@ const SignupScreen = ({ onSignup }) => {
   const [vehicleCapacity, setVehicleCapacity] = useState("");
   const [licensePlate, setLicensePlate] = useState("");
   const [drivingLicense, setDrivingLicense] = useState("");
+  const [fullName, setFullName] = useState("");
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
   const navigate = useNavigate();
 
   const handleSignup = async () => {
-    if (!email || !password || !confirmPassword || !contact || !erp) {
+    if (!email || !password || !confirmPassword || !contact || !erp || !fullName) {
       setMessage("Please fill all the fields");
       setMessageType("error");
       return;
@@ -43,22 +43,29 @@ const SignupScreen = ({ onSignup }) => {
     }
 
     const userData = {
+      fullName,
+      contactNo: contact,
       email,
-      password,
-      contact,
       erp,
-      hasCar,
-      vehicleCapacity: hasCar === "Yes" ? vehicleCapacity : null,
-      licensePlate: hasCar === "Yes" ? licensePlate : null,
-      drivingLicense: hasCar === "Yes" ? drivingLicense : null,
+      password,
+      confirmPassword,
+      carDetails: hasCar === "Yes"
+        ? {
+            plateNo: licensePlate,
+            licenseNo: drivingLicense,
+            vehicleCapacity: vehicleCapacity,
+          }
+        : {},
     };
 
-    const success = await onSignup(userData); // Call the parent handler
-
+    const success = await onSignup(userData);
     if (success) {
       setMessage("Signup Successful");
       setMessageType("success");
       setTimeout(() => navigate("/"), 2000);
+    } else {
+      setMessage("Signup failed. Please check your info or try again.");
+      setMessageType("error");
     }
   };
 
@@ -82,6 +89,16 @@ const SignupScreen = ({ onSignup }) => {
       <div className="signup-card">
         <h1 className="signup-header">Sign Up</h1>
         <div className="signup-body">
+          <label className="input-label">Full Name</label>
+          <input
+            type="text"
+            className="input-field"
+            placeholder="Enter your full name"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            required
+          />
+
           <label className="input-label">Email</label>
           <input
             type="email"
@@ -181,10 +198,8 @@ const SignupScreen = ({ onSignup }) => {
               />
             </>
           )}
-        </div>
 
-        <div className="signup-footer">
-          <button className="action-button" onClick={handleSignup}>
+          <button className="submit-button" onClick={handleSignup}>
             Sign Up
           </button>
         </div>

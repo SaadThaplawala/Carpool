@@ -87,4 +87,9 @@ router.post("/forget-password", async (req, res) => {
   }
 });
 
+router.get("/all-users", async (req, res) => {
+  const users = await User.find({});
+  res.json(users);
+});
+
 module.exports = router;
