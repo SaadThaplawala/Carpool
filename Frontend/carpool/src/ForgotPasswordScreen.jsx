@@ -1,47 +1,61 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importing useNavigate hook
+import { useNavigate } from "react-router-dom";
+import api from "./api";
 import "./ForgotPasswordScreen.css";
 
 const ForgotPasswordScreen = () => {
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(""); // State to display messages
-  const navigate = useNavigate(); // Using navigate hook to redirect
+  const navigate = useNavigate();
 
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@(khi\.iba\.edu\.pk|iba\.edu\.pk)$/;
     return emailRegex.test(email);
   };
 
-  const handleConfirm = () => {
-    if (password === confirmPassword) {
-      setMessage("Password changed successfully.");
-      setMessageType("success");
-      setTimeout(() => {
-        navigate("/"); // Redirect to LoginScreen
-      }, 2000);
-    } else {
+  const handleConfirm = async () => {
+    if (!validateEmail(email)) {
+      setMessage("Invalid email format");
+      setMessageType("error");
+      return;
+    }
+    if (password !== confirmPassword) {
       setMessage("Passwords don't match");
+      setMessageType("error");
+      return;
+    }
+    try {
+      const response = await api.forgetPassword({ email, newPassword: password });
+      if (response.success) {
+        setMessage("Password changed successfully.");
+        setMessageType("success");
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      } else {
+        setMessage(response.message);
+        setMessageType("error");
+      }
+    } catch (error) {
+      setMessage("Error changing password.");
       setMessageType("error");
     }
   };
 
   const handleCancel = () => {
-    navigate("/"); // Redirect to LoginScreen without validation
+    navigate("/");
   };
 
   return (
     <div className="forgot-password-container">
-      {/* Display Error Message */}
-      {errorMessage && (
-        <div className="error-message">
-          <p>{errorMessage}</p>
+      {message && (
+        <div className={`message-container ${messageType === "success" ? "success-message" : "error-message"}`}>
+          <p>{message}</p>
         </div>
       )}
-
-      {/* Forgot Password Card */}
       <div className="forgot-password-card">
         <div className="forgot-password-header">
           <h1>Forgot Password</h1>
@@ -73,16 +87,10 @@ const ForgotPasswordScreen = () => {
           />
         </div>
         <div className="forgot-password-footer">
-          <button
-            className="action-button confirm-button"
-            onClick={handleConfirm}
-          >
+          <button className="action-button confirm-button" onClick={handleConfirm}>
             Confirm
           </button>
-          <button
-            className="action-button cancel-button"
-            onClick={handleCancel}
-          >
+          <button className="action-button cancel-button" onClick={handleCancel}>
             Cancel
           </button>
         </div>

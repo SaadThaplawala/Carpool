@@ -171,7 +171,10 @@ const App = () => {
         ) : (
           <Routes>
             <Route path="/" element={<LoginScreen onLogin={handleLogin} />} />
-            <Route path="/signup" element={<SignUpScreen />} />
+            <Route path="/signup" element={<SignUpScreen onSignup={async (userData) => {
+  const response = await api.signup(userData);
+  return response.success;
+}} />} />
             <Route path="/forgot-password" element={<ForgotPasswordScreen />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

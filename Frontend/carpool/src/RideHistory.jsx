@@ -1,33 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "./api";
 import "./RideHistory.css";
 
 const RideHistory = () => {
   const navigate = useNavigate();
+  const [rides, setRides] = useState([]);
 
-  const rides = [
-    {
-      name: "John Doe",
-      to: "Location A",
-      time: "08:00 AM",
-      date: "2024-11-26",
-      from: "Location B",
-    },
-    {
-      name: "Jane Smith",
-      to: "Location C",
-      time: "09:30 AM",
-      date: "2024-11-27",
-      from: "Location D",
-    },
-    {
-      name: "Alex Johnson",
-      to: "Location E",
-      time: "11:00 AM",
-      date: "2024-11-28",
-      from: "Location F",
-    },
-  ];
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    api.getRideHistory(token).then((response) => {
+      if (response.success) setRides(response.data);
+    });
+  }, []);
 
   const handleViewProfile = () => {
     navigate("/profile"); // Redirect to Profile screen
