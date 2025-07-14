@@ -199,7 +199,7 @@ const SignupScreen = ({ onSignup }) => {
             </>
           )}
 
-          <button className="submit-button" onClick={handleSignup}>
+          <button className="signup-button" onClick={handleSignup}>
             Sign Up
           </button>
         </div>

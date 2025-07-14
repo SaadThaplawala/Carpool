@@ -23,7 +23,7 @@ const LoginScreen = ({ onLogin }) => {
 
     // If all validations pass, log in the user
     setMessage(""); // Clear any previous messages
-    onLogin();
+    onLogin(email, password);
     navigate("/"); // Redirect to the home page
   };
 

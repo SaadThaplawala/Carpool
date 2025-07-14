@@ -8,7 +8,7 @@ import CreateRide from "./CreateRide";
 import Profile from "./Profile";
 import LoginScreen from "./LoginScreen";
 import SettingsScreen from "./SettingsScreen";
-import SignUpScreen from "./SignUpScreen"; // Ensure correct import for SignUpScreen
+import SignUpScreen from "./SignUpScreen";
 import ForgotPasswordScreen from "./ForgotPasswordScreen";
 import ActiveBooking from "./ActiveBooking";
 import "./App.css";
@@ -41,7 +41,8 @@ const App = () => {
     try {
       const response = await api.listAvailableRides(token);
       if (response.success) {
-        setRides(response.data.rides);
+        console.log("Fetched rides:", response.data.rides);
+        setRides(response.data.rides || []);
       } else {
         console.error(response.message);
       }
@@ -55,7 +56,7 @@ const App = () => {
     try {
       const response = await api.getProfile(token);
       if (response.success) {
-        setUser(response.data.user);
+        setUser(response.data);
       } else {
         console.error(response.message);
       }
@@ -91,9 +92,11 @@ const App = () => {
     if (activeRide) {
       const token = localStorage.getItem("token");
       try {
-        const response = await api.cancelBooking(activeRide.id, token);
+        const response = await api.cancelBooking(activeRide._id, token);
         if (response.success) {
-          setRides((prevRides) => prevRides.filter((ride) => ride.id !== activeRide.id));
+          setRides((prevRides) =>
+            prevRides.filter((ride) => ride._id !== activeRide._id)
+          );
           setActiveRide(null);
         } else {
           alert(response.message);
@@ -108,11 +111,13 @@ const App = () => {
     const token = localStorage.getItem("token");
     if (ride.seatsAvailable > 0 && !activeRide) {
       try {
-        const response = await api.bookRide(ride.id, token);
+        const response = await api.bookRide(ride._id, token);
         if (response.success) {
           setActiveRide({ ...ride, totalPassengers: 4 - ride.seatsAvailable + 1 });
           setRides((prevRides) =>
-            prevRides.map((r) => (r.id === ride.id ? { ...r, seatsAvailable: ride.seatsAvailable - 1 } : r))
+            prevRides.map((r) =>
+              r._id === ride._id ? { ...r, seatsAvailable: ride.seatsAvailable - 1 } : r
+            )
           );
         } else {
           alert(response.message);
@@ -172,9 +177,9 @@ const App = () => {
           <Routes>
             <Route path="/" element={<LoginScreen onLogin={handleLogin} />} />
             <Route path="/signup" element={<SignUpScreen onSignup={async (userData) => {
-  const response = await api.signup(userData);
-  return response.success;
-}} />} />
+              const response = await api.signup(userData);
+              return response.success;
+            }} />} />
             <Route path="/forgot-password" element={<ForgotPasswordScreen />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

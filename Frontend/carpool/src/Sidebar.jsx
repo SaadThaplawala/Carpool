@@ -6,20 +6,20 @@ const Sidebar = ({ isOpen, onClose, onLogout }) => {
   const navigate = useNavigate();
 
   const handleNavigate = (path) => {
-    onClose(); // Close the sidebar after navigating
-    navigate(path); // Navigate to the specified route
+    navigate(path);
+    onClose(); // Close sidebar after navigating
   };
 
   return (
     <div className={`sidebar ${isOpen ? "open" : ""}`}>
-      <button className="close-sidebar" onClick={onClose}>
-        Close Sidebar
+      <button className="close-btn" onClick={onClose}>
+        &times;
       </button>
-      <ul>
+      <ul className="sidebar-links">
         <li onClick={() => handleNavigate("/")}>Available Rides</li>
-        <li onClick={() => handleNavigate("/history")}>View Ride History</li>
-        <li onClick={() => handleNavigate("/create")}>Create New Ride</li>
-        <li onClick={() => handleNavigate("/Profile")}>View Profile</li>
+        <li onClick={() => handleNavigate("/history")}>Ride History</li>
+        <li onClick={() => handleNavigate("/create")}>Create Ride</li>
+        <li onClick={() => handleNavigate("/profile")}>Profile</li>
         <li onClick={() => handleNavigate("/settings")}>Settings</li>
         <li onClick={onLogout}>Logout</li>
       </ul>

@@ -50,7 +50,7 @@ const api = {
   // Profile APIs
   getProfile: async (token) => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/auth/profile`, {
+      const response = await axios.get(`${API_BASE_URL}/profile`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       return { success: true, data: response.data };
@@ -61,7 +61,7 @@ const api = {
 
   updateProfile: async (data, token) => {
     try {
-      const response = await axios.put(`${API_BASE_URL}/auth/profile/update`, data, {
+      const response = await axios.put(`${API_BASE_URL}/profile/update`, data, {
         headers: { Authorization: `Bearer ${token}` },
       });
       return { success: true, data: response.data };
