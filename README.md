@@ -33,7 +33,7 @@ This is a full-stack carpooling web application designed for IBA students and st
    ```bash
    cd Backend
    npm install
-   npm run dev
+   npm start
    ```
 3. Run frontend:  
    ```bash
@@ -41,7 +41,7 @@ This is a full-stack carpooling web application designed for IBA students and st
    npm install
    npm run dev
    ```
-4. Open [http://localhost:5000](http://localhost:3000) in your browser.
+4. Open [http://localhost:5000](http://localhost:5000) in your browser.
 
 ---
 
